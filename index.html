@@ -1,1 +1,87 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#10101a"/><title>TikSave Pro</title></head><body><div id="app"></div><script type="module" src="/src/main.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TikSave Pro</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#090912;
+ color:white;
+ font-family:Arial,sans-serif;
+ padding:22px;
+}
+h1{color:#b56cff;text-align:center}
+p{color:#aaa;text-align:center}
+.panel{
+ background:#171725;
+ padding:20px;
+ border-radius:18px;
+ margin-top:25px;
+}
+input,textarea{
+ width:100%;
+ padding:15px;
+ background:#242438;
+ color:white;
+ border:1px solid #6040a0;
+ border-radius:12px;
+ margin:10px 0;
+}
+button{
+ width:100%;
+ padding:15px;
+ background:#853bff;
+ color:white;
+ border:0;
+ border-radius:12px;
+ font-weight:bold;
+ margin-top:10px;
+}
+#status{color:#c9aaff;margin-top:15px}
+</style>
+</head>
+<body>
+<h1>⚡ TikSave Pro</h1>
+<p>Premium Video Downloader</p>
+<div class="panel">
+<h3>TikTok Profile / Username</h3>
+<input id="profile"
+ placeholder="@username or profile link">
+<button onclick="fetchProfile()">Fetch Videos</button>
+<h3>Single / Bulk Video Links</h3>
+<textarea id="links" rows="5"
+ placeholder="Paste direct video URLs, one per line"></textarea>
+<button onclick="selectAll()">Select All</button>
+<button onclick="downloadVideos()">Download Videos</button>
+<button onclick="zipInfo()">ZIP Download</button>
+<div id="status">Ready</div>
+</div>
+<script>
+function statusText(t){
+ document.getElementById("status").textContent=t;
+}
+function fetchProfile(){
+ statusText("Profile fetching requires a supported API.");
+}
+function selectAll(){
+ statusText("All entered links selected.");
+}
+function downloadVideos(){
+ const urls=document.getElementById("links").value
+ .split("\n").map(x=>x.trim()).filter(Boolean);
+ if(!urls.length){
+  statusText("Please enter video URLs.");
+  return;
+ }
+ statusText(urls.length+" links entered. Download backend not connected.");
+}
+function zipInfo(){
+ statusText("ZIP export is not yet connected.");
+}
+</script>
+</body>
+</html>
